@@ -1,0 +1,129 @@
+{% extends 'app/base.html' %}
+
+{% load static %}
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+      $('.slider').bxSlider({
+          mode: 'fade',//horizontal, vertical, fade
+          auto: true,
+          pause: 2000
+      });
+    });
+</script>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+{% endblock %}
+
+{% block contenido %}
+
+<div class="slider">
+    <div>
+        <img src="{% static 'app/img/banner/banner1.jpg' %}" alt="">
+    </div>
+    <div>
+        <img src="{% static 'app/img/banner/banner2.jpg' %}" alt="">
+    </div>
+    <div>
+        <img src="{% static 'app/img/banner/banner3.jpg' %}" alt="">
+    </div>
+</div>
+
+<h2>Productos y servicios </h2>
+<div class="productos">
+
+<div class="producto">
+
+    <div class="contenedor_producto">
+
+        <img src="{% static 'app/img/cafe.jpg' %}" alt="imagen producto">
+        <div class="detalle">
+            <h5>Cafe</h5>
+            <h3>$2.500</h3>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="producto">
+
+    <div class="contenedor_producto">
+
+        <img src="{% static 'app/img/comida.jpg' %}" alt="imagen producto">
+        <div class="detalle">
+            <h5>Pollo frito</h5>
+            <h3>$3.990</h3>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="producto">
+
+    <div class="contenedor_producto">
+
+        <img src="{% static 'app/img/frutilla.jpg' %}" alt="imagen producto">
+        <div class="detalle">
+            <h5>Brownie</h5>
+            <h3>$2.000</h3>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="producto">
+
+    <div class="contenedor_producto">
+
+        <img src="{% static 'app/img/frutillas.jpg' %}" alt="imagen producto">
+        <div class="detalle">
+            <h5>Frutillas con chocolate</h5>
+            <h3>$2.500</h3>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="producto">
+
+    <div class="contenedor_producto">
+
+        <img src="{% static 'app/img/hamburguesa.jpg' %}" alt="imagen producto">
+        <div class="detalle">
+            <h5>hamburguesa</h5>
+            <h3>$2.500</h3>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="producto">
+
+    <div class="contenedor_producto">
+
+        <img src="{% static 'app/img/jugo.jpg' %}" alt="imagen producto">
+        <div class="detalle">
+            <h5>jugo</h5>
+            <h3>$1.500</h3>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+</div>
+
+{% endblock %}

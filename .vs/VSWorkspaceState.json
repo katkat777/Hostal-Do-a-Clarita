@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\app",
+    "\\app\\migrations",
+    "\\app\\static",
+    "\\app\\static\\app",
+    "\\app\\static\\app\\css",
+    "\\app\\static\\app\\img",
+    "\\app\\static\\app\\img\\banner",
+    "\\app\\static\\app\\img\\footer",
+    "\\app\\__pycache__"
+  ],
+  "SelectedNode": "\\app\\__pycache__\\__init__.cpython-39.pyc",
+  "PreviewInSolutionExplorer": false
+}

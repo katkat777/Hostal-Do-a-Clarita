@@ -359,7 +359,7 @@ class Reserva(models.Model):
 class SolicitudDeServicio(models.Model):
     id_solicitud = models.CharField(primary_key=True, max_length=20)
     reserva_id_reserva = models.ForeignKey(Reserva, models.DO_NOTHING, db_column='reserva_id_reserva')
-    transaccion_id_transaccion = models.ForeignKey('Transaccion', models.DO_NOTHING, db_column='transacci¾n_id_transacci¾n')
+    transaccion_id_transaccion = models.ForeignKey('Transaccion', models.DO_NOTHING, db_column='transaccion_id_transaccion')
 
     class Meta:
         managed = False
@@ -386,7 +386,7 @@ class Usuario(models.Model):
     fech_nac = models.CharField(max_length=20)
     telefono = models.CharField(max_length=20)
     registro_id_registro = models.ForeignKey(Registro, models.DO_NOTHING, db_column='registro_id_registro')
-    # correo_electronico = models.EmailField(max_length=50) #arreglar error campo
+    correo_electronico = models.CharField(max_length=50)
     cuenta_id_cuenta = models.CharField(max_length=50)
 
     class Meta:

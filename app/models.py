@@ -386,7 +386,7 @@ class Usuario(models.Model):
     fech_nac = models.CharField(max_length=20)
     telefono = models.CharField(max_length=20)
     registro_id_registro = models.ForeignKey(Registro, models.DO_NOTHING, db_column='registro_id_registro')
-    correo_electronico = models.EmailField(max_length=50)
+    # correo_electronico = models.EmailField(max_length=50) #arreglar error campo
     cuenta_id_cuenta = models.CharField(max_length=50)
 
     class Meta:

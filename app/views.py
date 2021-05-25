@@ -10,3 +10,6 @@ def contacto(request):
 
 def galeria(request):
     return render(request, 'app/galeria.html')
+
+def registro(request):
+    return render(request, 'app/registro.html')

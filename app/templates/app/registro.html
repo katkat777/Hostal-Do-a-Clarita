@@ -4,45 +4,56 @@
 
 <H1>Gestion de clientes</H1>
 <h2>Nuevo cliente</h2>
-<div>
-    <form action="" method="POST">
-    {% csrf_token %}
 
-    <label for="">Rut</label>
-    <input type="text" name="rut">
-    <br>
-    <label for="">Cliente</label>
-    <input type="text" name="cliente">
-    <br>  
-    <label for="">Emp_cliente</label>
-    <input type="text" name="emp_cliente">
-    <br>    
-    <label for="">Huesped</label>
-    <input type="text" name="huesped">
-    <br>
-    <input type="submit" value="Guardar">
-    
-</form>
+<form action="" method="POST">
+{% csrf_token %}
+
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Rut</label>
+    <input type="text" class="form-control" name="rut" placeholder="12345678-9">
 </div>
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Cliente</label>
+    <input type="text" name="cliente" class="form-control"  placeholder="numero de cliente">
+</div>
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Emp_cliente</label>
+    <input type="text" name="emp_cliente" class="form-control" placeholder="numero del empleado cliente">
+</div>
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Huesped</label>
+    <input type="text" name="huesped"  class="form-control"  placeholder="numero del huesped">
+</div>
+<div class="col-auto">
+    <button type="submit" class="btn btn-primary mb-3">Guardar</button>
+</div>
+</form>
 {{mensaje}}
+<br><br><br>
 
-<h2>clientes</h2>
-<table>
-    <tr>
-        <th>rut</th> 
-        <th>cliente</th>
-        <th>emp_cliente</th>
-        <th>huesped</th>
-    </tr>
-    {% for p in clientes %}
-        <tr>
-            <td>{{ p.0 }}</td>
-            <td>{{ p.1 }}</td>
-            <td>{{ p.2 }}</td>
-            <td>{{ p.3 }}</td>
-        </tr>
-    {% endfor %}
-</table>
+<h2>Clientes</h2>
+<br><br>
+{% for p in clientes %}
+<ul class="list-group">
+    <li class="list-group-item list-group-item-primary">rut</li>
+    <li class="list-group-item list-group-item-success">{{ p.0 }}</li>
+    <li class="list-group-item list-group-item-primary">cliente</li>
+    <li class="list-group-item list-group-item-success">{{ p.1 }}</li>
+    <li class="list-group-item list-group-item-primary">emp_cliente</li>
+    <li class="list-group-item list-group-item-success">{{ p.2 }}</li>
+    <li class="list-group-item list-group-item-primary">huesped</li>
+    <li class="list-group-item list-group-item-success">{{ p.3 }}</li>
+</ul>
+<br><br><br>
+
+<!-- <ul class="list-group list-group-horizontal-md">
+    <li class="list-group-item">{{ p.0 }}</li>
+    <li class="list-group-item">{{ p.1 }}</li>
+    <li class="list-group-item">{{ p.2 }}</li>
+    <li class="list-group-item">{{ p.3 }}</li>
+</ul> -->
+{% endfor %}
+
 
 
 

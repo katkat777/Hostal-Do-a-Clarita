@@ -2,6 +2,47 @@
 {% load static %}
 {% block contenido %}
 
+<H1>Gestion de clientes</H1>
+<h2>Nuevo cliente</h2>
+<div>
+    <form action="" method="POST">
+    {% csrf_token %}
+
+    <label for="">Rut</label>
+    <input type="text" name="rut">
+    <br>
+    <label for="">Cliente</label>
+    <input type="text" name="cliente">
+    <br>  
+    <label for="">Emp_cliente</label>
+    <input type="text" name="emp_cliente">
+    <br>    
+    <label for="">Huesped</label>
+    <input type="text" name="huesped">
+    <br>
+    <input type="submit" value="Guardar">
+    
+</form>
+</div>
+{{mensaje}}
+
+<h2>clientes</h2>
+<table>
+    <tr>
+        <th>rut</th> 
+        <th>cliente</th>
+        <th>emp_cliente</th>
+        <th>huesped</th>
+    </tr>
+    {% for p in clientes %}
+        <tr>
+            <td>{{ p.0 }}</td>
+            <td>{{ p.1 }}</td>
+            <td>{{ p.2 }}</td>
+            <td>{{ p.3 }}</td>
+        </tr>
+    {% endfor %}
+</table>
 
 
 

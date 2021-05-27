@@ -12,6 +12,9 @@ class Administrador(models.Model):
     rut = models.OneToOneField('Usuario', models.DO_NOTHING, db_column='rut', primary_key=True)
     id_adm = models.CharField(unique=True, max_length=20)
 
+    def __str__(self) :
+        return self.rut
+
     class Meta:
         managed = False
         db_table = 'administrador'
@@ -22,6 +25,9 @@ class AppCliente(models.Model):
     rut = models.CharField(unique=True, max_length=11, blank=True, null=True)
     nombre = models.CharField(max_length=50, blank=True, null=True)
     apellido = models.CharField(max_length=50, blank=True, null=True)
+
+    def __str__(self) :
+        return self.id
 
     class Meta:
         managed = False
@@ -102,6 +108,8 @@ class Cliente(models.Model):
     id_cliente = models.CharField(unique=True, max_length=20)
     emp_cliente = models.CharField(max_length=20)
     id_huesped = models.CharField(unique=True, max_length=20, blank=True, null=True)
+    def __str__(self) :
+        return self.rut
 
     class Meta:
         managed = False
@@ -237,7 +245,7 @@ class MetodoPago(models.Model):
     credito = models.CharField(max_length=50)
     debito = models.CharField(max_length=50)
     transaccion_id_transaccion = models.CharField(max_length=50)
-    mÚtodo_pago_id = models.FloatField(primary_key=True)
+    metodo_pago_id = models.FloatField(primary_key=True)
 
     class Meta:
         managed = False
@@ -307,6 +315,12 @@ class Registro(models.Model):
     fecha_registro = models.DateField()
     administrador_id_adm = models.ForeignKey(Administrador, models.DO_NOTHING, db_column='administrador_id_adm')
 
+    def __str__(self) :
+        return self.id_registro,
+        return self.cuenta_id_cuenta,
+        return self.fecha_registro,
+        return self.administrador_id_adm
+
     class Meta:
         managed = False
         db_table = 'registro'
@@ -370,7 +384,7 @@ class Transaccion(models.Model):
     id_transaccion = models.CharField(primary_key=True, max_length=50)
     solicitud_de_servicio_id_solicitud = models.ForeignKey(SolicitudDeServicio, models.DO_NOTHING, db_column='solicitud_de_servicio_id_solicitud')
     factura_id_factura = models.CharField(max_length=20)
-    mÚtodo_pago_mÚtodo_pago_id = models.FloatField()
+    metodo_pago_metodo_pago_id = models.FloatField()
     fecha_transaccion = models.DateField()
     reserva_id_reserva = models.ForeignKey(Reserva, models.DO_NOTHING, db_column='reserva_id_reserva')
 

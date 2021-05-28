@@ -1,3 +1,4 @@
+from app.models import Cliente
 from django.shortcuts import render
 from django.db import connection
 import cx_Oracle
@@ -54,3 +55,6 @@ def agregar_cliente(rut, id_cliente, emp_cliente, id_huesped):
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('SP_AGREGAR_CLIENTE',[rut, id_cliente, emp_cliente, id_huesped, salida])
     return salida.getvalue()
+
+def editar_cliente(request,id):
+    cliente = Cliente.objects.get(id = id)

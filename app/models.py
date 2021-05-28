@@ -225,6 +225,9 @@ class Habitacion(models.Model):
     accesorios = models.CharField(max_length=50)
     estado_habitacion_estado_habitacion_id = models.FloatField()
 
+    def __str__(self) :
+        return self.id_habitacion
+
     class Meta:
         managed = False
         db_table = 'habitacion'

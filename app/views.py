@@ -1,4 +1,4 @@
-from app.models import AppCliente, Cliente
+from app.models import *
 from django.shortcuts import render
 from django.db import connection
 import cx_Oracle
@@ -16,9 +16,8 @@ def galeria(request):
 
 def registrohabitacion(request):
     data = {
-        'habitaciones':listado_habitaciones()
+        'habitaciones':listado_habitaciones(),
     }
-
     if request.method == 'POST':
         id_habitacion = request.POST.get('id_habitacion')
         precio = request.POST.get('precio')
@@ -49,7 +48,7 @@ def listado_habitaciones():
         lista.append(fila)
 
     return lista
-
+    
 def agregar_habitacion(id_habitacion, precio, tipo_cama, caracteristicas, reserva_id_reserva, accesorios, estado_habitacion_estado_habitacion_id):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
@@ -59,7 +58,7 @@ def agregar_habitacion(id_habitacion, precio, tipo_cama, caracteristicas, reserv
 
 def registro(request):
     data = {
-        'clientes':listado_clientes()
+        'clientes':listado_clientes(),
     }
 
     if request.method == 'POST':
@@ -73,7 +72,7 @@ def registro(request):
             data['clientes'] = listado_clientes()
         else:
             data['mensaje'] = 'no se pudo guardar'
-
+    
     return render(request, 'app/registro.html', data)
 
 
@@ -96,3 +95,5 @@ def agregar_cliente(rut, id_cliente, emp_cliente, id_huesped):
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('SP_AGREGAR_CLIENTE',[rut, id_cliente, emp_cliente, id_huesped, salida])
     return salida.getvalue()
+
+

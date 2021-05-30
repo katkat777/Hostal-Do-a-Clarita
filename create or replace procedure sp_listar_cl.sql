@@ -31,13 +31,13 @@ create or replace procedure sp_agregar_habitacion(
     v_caracteristicas varchar2,
     v_reserva_id_reserva varchar2,
     v_accesorios varchar2,
-    v_estado_habitacion_estado_habitacion_id varchar2,
+    v_estado_habitacion_estado_habitacion_id number,
     v_salida out number
 ) is
 
 begin
-    insert into habitacion(id_habitacion, precio, tipo_cama, caracteristicas,reserva_id_reserva, accesorios,estado_habitacion_estado_habitacion_id )
-    values(v_id_habitacion, v_precio, v_tipo_cama, v_caracteristicas,v_reserva_id_reserva,v_accesorios,v_estado_habitacion_estado_habitacion_id);
+    insert into habitacion(id_habitacion, precio, tipo_cama, caracteristicas, reserva_id_reserva, accesorios, estado_habitacion_estado_habitacion_id)
+    values(v_id_habitacion, v_precio, v_tipo_cama, v_caracteristicas, v_reserva_id_reserva, v_accesorios, v_estado_habitacion_estado_habitacion_id);
     commit;
     v_salida:=1;
 

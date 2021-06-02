@@ -9,5 +9,6 @@ urlpatterns = [
     path('registrohabitacion/', registrohabitacion, name="registrohabitacion"),
     path('RegistroProducto/', RegistroProducto, name="RegistroProducto"),
     path('RegistroFactura/', RegistroFactura, name="RegistroFactura"),
+    path('RegistroProveedor/', RegistroProveedor, name="RegistroProveedor"),
 
 ]

@@ -112,3 +112,34 @@ is
 begin
     open facturas for select * from factura;
 end;
+
+
+
+
+
+
+CREATE OR REPLACE  PROCEDURE sp_agregar_proveedor(
+    v_rut varchar2,
+    v_id_proveedor varchar2,
+    v_emp_proveedor varchar2,
+    v_salida out number
+) is
+
+begin
+    insert into proveedor(rut, id_proveedor, emp_proveedor)
+    values(v_rut, v_id_proveedor, v_emp_proveedor);
+    commit;
+    v_salida:=1;
+
+    exception
+    when others then
+        v_salida:=0;
+
+end;
+
+
+CREATE OR REPLACE PROCEDURE SP_LISTAR_PROVEEDOR (proveedores out SYS_REFCURSOR)
+is
+begin
+    open proveedores for select * from proveedor;
+end;

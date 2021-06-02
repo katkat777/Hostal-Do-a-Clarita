@@ -151,22 +151,49 @@ def listado_productos():
     return lista
 
 
+##CU PROVEEDOR
 
 
-def agregar_proovedor(rutproveedor, nombreproveedor, apellidoproveedor, fechnacprov, telproveedor, correoeproveedor, idproveedor, empproveedor):
+def RegistroProveedor(request):
+    data = {
+        'proveedores':listado_proveedores(),
+    }
+    if request.method == 'POST':
+        rut = request.POST.get('rut')
+        id_proveedor = request.POST.get('id_proveedor')
+        emp_proveedor = request.POST.get('emp_proveedor')
+     
+        salida = agregar_proveedor(rut, id_proveedor, emp_proveedor)
+        if salida == 1:
+            data['mensaje'] = 'agregado correctamente'
+            data['proveedores'] = listado_proveedores()
+        else:
+            data['mensaje'] = 'no se pudo guardar'
+
+    return render(request, 'app/RegistroProveedor.html', data)
+
+
+
+def agregar_proveedor(rut, id_proveedor, emp_proveedor):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('SP_AGREGAR_PROVEEDOR',[rutproveedor, nombreproveedor, apellidoproveedor, fechnacprov, telproveedor, correoeproveedor, idproveedor, empproveedor, salida])
+    cursor.callproc('SP_AGREGAR_PROVEEDOR',[rut, id_proveedor, emp_proveedor, salida])
     return salida.getvalue()
     
 
-def listado_proveedor():
+def listado_proveedores():
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     out_cur = django_cursor.connection.cursor()
 
     cursor.callproc("SP_LISTAR_PROVEEDOR", [out_cur])
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista
+
 
 
 #cu factura

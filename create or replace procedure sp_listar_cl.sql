@@ -59,7 +59,7 @@ CREATE OR REPLACE  PROCEDURE sp_agregar_producto(
     v_tipo_producto varchar2,
     v_stock varchar2,
     v_stock_critico varchar2,
-    v_fech_venc number,
+    v_fech_venc date,
     v_descripcion varchar2,
     v_salida out number
 ) is

@@ -1,0 +1,90 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block contenido %}
+
+<br>
+<br>
+<H1>Registro de proveedor</H1>
+<br>
+<br>
+<div class="card" style="width: 30rem;">
+    <div class="card-body">
+        <h2>Nuevo proveedor</h2>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Rut: </label>
+                <input type="text" class="form-control" name="rutproveedor" placeholder="ej: 11111111">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Nombre: </label>
+                <input type="text" name="nombreproveedor" class="form-control" placeholder="ej: Juan">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Apellido: </label>
+                <input type="text" name="apellidoproveedor" class="form-control" placeholder="ej: Rosas">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Fecha de nacimiento: </label>
+                <input type="text" name="fechnacprov" class="form-control" placeholder="ej: 010101">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Teléfono: </label>
+                <input type="text" name="telproveedor" class="form-control" placeholder="ej:091111111">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Correo electrónico: </label>
+                <input type="text" name="correoeproveedor" class="form-control" placeholder="ej: Juanrosas@ola.cl">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">ID: </label>
+                <input type="text" name="idproveedor" class="form-control" placeholder="ej: D121D2">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Empresa: </label>
+                <input type="text" name="empproveedor" class="form-control" placeholder="ej: Los Manantiales">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-success mb-3">Guardar</button>
+            </div>
+        </form>
+
+        {{mensaje}}
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+
+
+        {% for p in productos %}
+<div class="card" style="width: 30rem;">
+    <div class="card-body">
+        <h2>producto</h2>
+        <ul class="list-group">
+
+            <li class="list-group-item list-group-item-action list-group-item-info"> id_producto : {{ p.0 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> precio : {{ p.1 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> tipo_producto : {{ p.2 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> stock : {{ p.3 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> stock_critico : {{ p.4}} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> fech_venc: {{ p.5 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> descripcion: {{ p.6 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> descripcion: {{ p.7 }} </li>
+        </ul>
+        <div>
+            <button typo="submit" class="btn btn-danger m-1">Eliminar</button>
+            <button class="btn btn-warning m-1">Editar</button>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+
+
+{% endfor %}
+
+{% endblock %} 

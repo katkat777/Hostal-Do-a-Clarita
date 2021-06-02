@@ -1,0 +1,83 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block contenido %}
+
+<br><br>
+<H1>Registro de habitacion</H1>
+<br><br>
+<div class="card" style="width: 30rem;">
+    <div class="card-body">
+        <h2>Nueva habitacion</h2>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">id habitacion</label>
+            <input type="text" class="form-control" name="id_habitacion" placeholder="1">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">precio</label>
+            <input type="text" name="precio" class="form-control"  placeholder="$150.000">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">tipo cama</label>
+            <input type="text" name="tipo_cama" class="form-control" placeholder="full">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">caracteristicas</label>
+            <input type="text" name="caracteristicas"  class="form-control"  placeholder="habitacion equipada con todo">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">id reserva</label>
+            <input type="text" name="reserva_id_reserva"  class="form-control"  placeholder="001">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">accesorios</label>
+            <input type="text" name="accesorios"  class="form-control"  placeholder="mini bar, purificador de aire">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">id estado habitacion</label>
+            <input type="text" name="estado_habitacion_estado_habitacion_id"  class="form-control"  placeholder="disponible">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-success mb-3">Guardar</button>
+        </div>
+        </form>     
+
+        {{mensaje}}
+    </div>
+</div>
+
+        <br><br><br>
+
+
+        {% for p in habitaciones %}
+<div class="card" style="width: 30rem;">
+    <div class="card-body">
+        <h2>Habitacion</h2>
+        <ul class="list-group">
+            
+            <li class="list-group-item list-group-item-action list-group-item-info"> id_habitacion : {{ p.0 }} </li> 
+            <li class="list-group-item list-group-item-action list-group-item-info"> precio : {{ p.1 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> tipo cama : {{ p.2 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> caracteristicas : {{ p.3 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> id reserva : {{ p.4}} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> accesorios : {{ p.5 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> id estado habitacion : {{ p.6 }} </li>
+        </ul>
+        <div>
+            <button typo="submit" class ="btn btn-danger m-1" >Eliminar</button>
+            <button class ="btn btn-warning m-1" >Editar</button>
+        </div>
+    </div>
+</div>
+<br><br>
+
+
+
+
+{% endfor %}
+
+{% endblock %} 
+

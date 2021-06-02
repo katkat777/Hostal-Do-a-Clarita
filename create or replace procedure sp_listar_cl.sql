@@ -23,3 +23,32 @@ begin
         v_salida:=0;
 
 end;
+
+create or replace procedure sp_agregar_habitacion(
+    v_id_habitacion varchar2,
+    v_precio varchar2,
+    v_tipo_cama varchar2,
+    v_caracteristicas varchar2,
+    v_reserva_id_reserva varchar2,
+    v_accesorios varchar2,
+    v_estado_habitacion_estado_habitacion_id number,
+    v_salida out number
+) is
+
+begin
+    insert into habitacion(id_habitacion, precio, tipo_cama, caracteristicas, reserva_id_reserva, accesorios, estado_habitacion_estado_habitacion_id)
+    values(v_id_habitacion, v_precio, v_tipo_cama, v_caracteristicas, v_reserva_id_reserva, v_accesorios, v_estado_habitacion_estado_habitacion_id);
+    commit;
+    v_salida:=1;
+
+    exception
+    when others then
+        v_salida:=0;
+
+end;
+
+create or replace procedure sp_listar_habitaciones(habitaciones out SYS_REFCURSOR)
+is
+begin
+    open habitaciones for select * from habitacion;
+end;

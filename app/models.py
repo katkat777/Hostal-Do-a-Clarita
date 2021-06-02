@@ -223,7 +223,10 @@ class Habitacion(models.Model):
     caracteristicas = models.CharField(max_length=50)
     reserva_id_reserva = models.ForeignKey('Reserva', models.DO_NOTHING, db_column='reserva_id_reserva')
     accesorios = models.CharField(max_length=50)
-    estado_habitacion_estado_habitacion_id = models.FloatField()
+    estado_habitacion_estado_habitacion_id = models.IntegerField()
+
+    def __str__(self) :
+        return self.id_habitacion
 
     class Meta:
         managed = False

@@ -14,6 +14,9 @@ def contacto(request):
 def galeria(request):
     return render(request, 'app/galeria.html')
 
+
+
+
 def registrohabitacion(request):
     data = {
         'habitaciones':listado_habitaciones(),
@@ -102,3 +105,51 @@ def agregar_cliente(rut, id_cliente, emp_cliente, id_huesped):
     return salida.getvalue()
 
 
+
+
+
+
+
+def RegistroProducto(request):
+    data = {
+        'productos':listado_productos(),
+    }
+    if request.method == 'POST':
+        id_producto = request.POST.get('id_producto')
+        precio = request.POST.get('precio')
+        tipo_producto = request.POST.get('tipo_producto')
+        stock = request.POST.get('stock')
+        stock_critico = request.POST.get('stock_critico')
+        fech_venc = request.POST.get('fech_venc')
+        descripcion = request.POST.get('descripcion')
+        salida = agregar_producto(id_producto, precio, tipo_producto, stock, stock_critico, fech_venc, descripcion)
+        if salida == 1:
+            data['mensaje'] = 'agregado correctamente'
+            data['productos'] = listado_productos()
+        else:
+            data['mensaje'] = 'no se pudo guardar'
+
+    return render(request, 'app/RegistroProducto.html', data)
+
+
+    
+def agregar_producto(id_producto, precio, tipo_producto, stock, stock_critico, fech_venc, descripcion):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('SP_AGREGAR_PRODUCTO',[id_producto, precio, tipo_producto, stock, stock_critico, fech_venc, descripcion, salida])
+    return salida.getvalue()
+    
+
+def listado_productos():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_LISTAR_PRODUCTOS", [out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista

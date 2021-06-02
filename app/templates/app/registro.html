@@ -51,11 +51,23 @@
         </ul>
         <div>
             <button class ="btn btn-danger m-1" >Eliminar</button>
+            
             <button class ="btn btn-warning m-1" >Editar</button>
         </div>
     </div>
 </div>
 <br><br>
+
+<div class="text-center">
+    <form method="post">
+        {% csrf_token %}
+
+        <p class="delete-msg">Are you sure you want to delete the {{ object.nombre }}?</p>
+
+       
+        <button class="btn btn-primary" type="submit">Si</button>
+    </form>
+</div>
 
 {% endfor %}
 

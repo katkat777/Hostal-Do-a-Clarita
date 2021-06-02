@@ -75,3 +75,9 @@ begin
         v_salida:=0;
 
 end;
+
+CREATE OR REPLACE PROCEDURE SP_LISTAR_PRODUCTOS (productos out SYS_REFCURSOR)
+is
+begin
+    open productos for select * from producto;
+end;

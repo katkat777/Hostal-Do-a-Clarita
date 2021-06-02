@@ -9,5 +9,4 @@ urlpatterns = [
     path('registrohabitacion/', registrohabitacion, name="registrohabitacion"),
 
 
-
 ]

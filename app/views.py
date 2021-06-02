@@ -56,6 +56,11 @@ def agregar_habitacion(id_habitacion, precio, tipo_cama, caracteristicas, reserv
     cursor.callproc('SP_AGREGAR_HABITACION',[id_habitacion, precio, tipo_cama, caracteristicas, reserva_id_reserva, accesorios, estado_habitacion_estado_habitacion_id, salida])
     return salida.getvalue()
 
+
+
+
+
+
 def registro(request):
     data = {
         'clientes':listado_clientes(),

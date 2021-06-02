@@ -14,11 +14,11 @@
 
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">id habitacion</label>
-            <input type="text" class="form-control" name="id_habitacion" placeholder="1">
+            <input type="number"class="form-control" name="id_habitacion" placeholder="1" min="1">
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">precio</label>
-            <input type="text" name="precio" class="form-control"  placeholder="$150.000">
+            <input type="text" name="precio" class="form-control"  placeholder="$150.000" min="1">
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">tipo cama</label>
@@ -30,7 +30,7 @@
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">id reserva</label>
-            <input type="text" name="reserva_id_reserva"  class="form-control"  placeholder="001">
+            <input type="number" name="reserva_id_reserva"  class="form-control"  placeholder="001" min="1">
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">accesorios</label>
@@ -59,7 +59,7 @@
         <ul class="list-group">
             
             <li class="list-group-item list-group-item-action list-group-item-info"> id_habitacion : {{ p.0 }} </li> 
-            <li class="list-group-item list-group-item-action list-group-item-info"> precio : {{ p.1 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> precio :$ {{ p.1 }} </li>
             <li class="list-group-item list-group-item-action list-group-item-info"> tipo cama : {{ p.2 }} </li>
             <li class="list-group-item list-group-item-action list-group-item-info"> caracteristicas : {{ p.3 }} </li>
             <li class="list-group-item list-group-item-action list-group-item-info"> id reserva : {{ p.4}} </li>

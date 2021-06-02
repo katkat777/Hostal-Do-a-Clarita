@@ -80,6 +80,8 @@ def registro(request):
     return render(request, 'app/registro.html', data)
 
 
+
+
 def listado_clientes():
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
@@ -135,7 +137,7 @@ def agregar_producto(id_producto, precio, tipo_producto, stock, stock_critico, f
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('SP_AGREGAR_PRODUCTO',[id_producto, precio, tipo_producto, stock, stock_critico, fech_venc, descripcion, salida])
     return salida.getvalue()
-    
+
 
 def listado_productos():
     django_cursor = connection.cursor()
@@ -151,7 +153,9 @@ def listado_productos():
     return lista
 
 
+
 ##CU PROVEEDOR
+
 
 
 def RegistroProveedor(request):
@@ -162,7 +166,6 @@ def RegistroProveedor(request):
         rut = request.POST.get('rut')
         id_proveedor = request.POST.get('id_proveedor')
         emp_proveedor = request.POST.get('emp_proveedor')
-     
         salida = agregar_proveedor(rut, id_proveedor, emp_proveedor)
         if salida == 1:
             data['mensaje'] = 'agregado correctamente'
@@ -171,6 +174,7 @@ def RegistroProveedor(request):
             data['mensaje'] = 'no se pudo guardar'
 
     return render(request, 'app/RegistroProveedor.html', data)
+    
 
 
 

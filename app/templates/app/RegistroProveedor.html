@@ -60,20 +60,20 @@
 <br>
 
 
-        {% for p in productos %}
+        {% for p in proveedores %}
 <div class="card" style="width: 30rem;">
     <div class="card-body">
         <h2>producto</h2>
         <ul class="list-group">
 
-            <li class="list-group-item list-group-item-action list-group-item-info"> id_producto : {{ p.0 }} </li>
-            <li class="list-group-item list-group-item-action list-group-item-info"> precio : {{ p.1 }} </li>
-            <li class="list-group-item list-group-item-action list-group-item-info"> tipo_producto : {{ p.2 }} </li>
-            <li class="list-group-item list-group-item-action list-group-item-info"> stock : {{ p.3 }} </li>
-            <li class="list-group-item list-group-item-action list-group-item-info"> stock_critico : {{ p.4}} </li>
-            <li class="list-group-item list-group-item-action list-group-item-info"> fech_venc: {{ p.5 }} </li>
-            <li class="list-group-item list-group-item-action list-group-item-info"> descripcion: {{ p.6 }} </li>
-            <li class="list-group-item list-group-item-action list-group-item-info"> descripcion: {{ p.7 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> rutproveedor : {{ p.0 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> nombreproveedor : {{ p.1 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> apellidoproveedor : {{ p.2 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> fechnacprov : {{ p.3 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> telproveedor : {{ p.4}} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> correoeproveedor: {{ p.5 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> idproveedor: {{ p.6 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> empproveedor: {{ p.7 }} </li>
         </ul>
         <div>
             <button typo="submit" class="btn btn-danger m-1">Eliminar</button>

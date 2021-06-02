@@ -149,3 +149,19 @@ def listado_productos():
         lista.append(fila)
 
     return lista
+
+def agregar_proovedor(rutproveedor, nombreproveedor, apellidoproveedor, fechnacprov, telproveedor, correoeproveedor, idproveedor, empproveedor):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('SP_AGREGAR_PROVEEDOR',[rutproveedor, nombreproveedor, apellidoproveedor, fechnacprov, telproveedor, correoeproveedor, idproveedor, empproveedor, salida])
+    return salida.getvalue()
+    
+
+def listado_proveedor():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_LISTAR_PROVEEDOR", [out_cur])
+

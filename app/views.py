@@ -60,10 +60,6 @@ def agregar_habitacion(id_habitacion, precio, tipo_cama, caracteristicas, reserv
     return salida.getvalue()
 
 
-
-
-
-
 def registro(request):
     data = {
         'clientes':listado_clientes(),

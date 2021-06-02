@@ -52,3 +52,26 @@ is
 begin
     open habitaciones for select * from habitacion;
 end;
+
+CREATE OR REPLACE  PROCEDURE sp_agregar_producto(
+    v_id_producto varchar2,
+    v_precio number,
+    v_tipo_producto varchar2,
+    v_stock varchar2,
+    v_stock_critico varchar2,
+    v_fech_venc number,
+    v_descripcion varchar2,
+    v_salida out number
+) is
+
+begin
+    insert into producto(id_producto, precio, tipo_producto, stock, stock_critico, fech_venc, descripcion)
+    values(v_id_producto, v_precio, v_tipo_producto, v_stock, v_stock_critico, v_fech_venc, v_descripcion);
+    commit;
+    v_salida:=1;
+
+    exception
+    when others then
+        v_salida:=0;
+
+end;

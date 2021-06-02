@@ -150,6 +150,9 @@ def listado_productos():
 
     return lista
 
+
+
+
 def agregar_proovedor(rutproveedor, nombreproveedor, apellidoproveedor, fechnacprov, telproveedor, correoeproveedor, idproveedor, empproveedor):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
@@ -164,4 +167,51 @@ def listado_proveedor():
     out_cur = django_cursor.connection.cursor()
 
     cursor.callproc("SP_LISTAR_PROVEEDOR", [out_cur])
+
+
+#cu factura
+
+def RegistroFactura(request):
+    data = {
+        'facturas':listado_facturas(),
+    }
+    if request.method == 'POST':
+        id_factura = request.POST.get('id_factura')
+        Transaccion_id_transaccion = request.POST.get('transaccion_id_transaccion')
+        fecha_factura = request.POST.get('fecha_factura')
+        detalle = request.POST.get('detalle')
+        total = request.POST.get('total')
+        
+        salida = agregar_factura(id_factura, Transaccion_id_transaccion, fecha_factura, detalle, total)
+        if salida == 1:
+            data['mensaje'] = 'agregado correctamente'
+            data['facturas'] = listado_facturas()
+        else:
+            data['mensaje'] = 'no se pudo guardar'
+
+    return render(request, 'app/RegistroFactura.html', data)
+
+
+    
+def agregar_factura(id_factura, Transaccion_id_transaccion, fecha_factura, detalle, total):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('SP_AGREGAR_FACTURA',[id_factura, Transaccion_id_transaccion, fecha_factura, detalle, total, salida])
+    return salida.getvalue()
+    
+
+def listado_facturas():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_LISTAR_FACTURAS", [out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista
+
 

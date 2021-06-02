@@ -81,3 +81,34 @@ is
 begin
     open productos for select * from producto;
 end;
+
+
+
+
+CREATE OR REPLACE  PROCEDURE sp_agregar_factura(
+    v_id_factura varchar2,
+    v_transaccion_id_transaccion varchar2,
+    v_fecha_factura date,
+    v_detalle varchar2,
+    v_total varchar2,
+    v_salida out number
+) is
+
+begin
+    insert into factura(id_factura, transaccion_id_transaccion,  fecha_factura,  detalle,  total)
+    values(v_id_factura, v_transaccion_id_transaccion,  v_fecha_factura,  v_detalle,  v_total);
+    commit;
+    v_salida:=1;
+
+    exception
+    when others then
+        v_salida:=0;
+
+end;
+
+
+CREATE OR REPLACE PROCEDURE SP_LISTAR_FACTURAS (facturas out SYS_REFCURSOR)
+is
+begin
+    open facturas for select * from factura;
+end;

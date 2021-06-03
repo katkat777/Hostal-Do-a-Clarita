@@ -417,9 +417,9 @@ def listado_recepciones():
 
     return lista  
 
-    #CU huesped
+  #CU huesped
 
-    def RegistroHuesped(request):
+def RegistroHuesped(request):
     data = {
         'huespedes':listado_huespedes(),
     }
@@ -454,4 +454,7 @@ def listado_huespedes():
         lista.append(fila)
 
     return lista
+
+
+
 

@@ -17,5 +17,4 @@ urlpatterns = [
     path('RegistroHuesped/', RegistroHuesped, name="RegistroHuesped"),
 
 
-
 ]

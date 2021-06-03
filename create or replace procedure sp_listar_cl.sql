@@ -276,3 +276,45 @@ is
 begin
     open recepciones for select * from recepcion_producto;
 end;
+
+
+
+
+
+
+------------------------------
+
+
+CREATE TABLE "C##HOSTAL"."HUESPED" 
+   (	"RUT" VARCHAR2(20 BYTE), 
+	"ID_HUESPED" VARCHAR2(20 BYTE)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "USERS" ;
+
+CREATE OR REPLACE  PROCEDURE sp_agregar_huesped(
+    v_rut varchar2,
+    v_id_huesped varchar2,
+    v_salida out number
+) is
+
+begin
+    insert into huesped(rut, id_huesped)
+    values(v_rut, v_id_huesped);
+    commit;
+    v_salida:=1;
+
+    exception
+    when others then
+        v_salida:=0;
+
+end;
+
+CREATE OR REPLACE PROCEDURE SP_LISTAR_HUESPED (huespedes out SYS_REFCURSOR)
+is
+begin
+    open huespedes for select * from huesped;
+end;
+
+

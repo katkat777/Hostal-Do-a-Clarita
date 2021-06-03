@@ -246,3 +246,33 @@ is
 begin
     open empleados for select * from empleado;
 end;
+
+
+
+
+
+CREATE OR REPLACE  PROCEDURE SP_REGISTRAR_RECEPCION(
+    v_id_recepcion_producto varchar2,
+    v_orden_pedido_id_pedido varchar2,
+    v_fecha_recepcion_pro date,
+    v_salida out number
+) is
+
+begin
+    insert into recepcion_producto(id_recepcion_producto, orden_pedido_id_pedido, fecha_recepcion_pro)
+    values(v_id_recepcion_producto, v_orden_pedido_id_pedido, v_fecha_recepcion_pro);
+    commit;
+    v_salida:=1;
+
+    exception
+    when others then
+        v_salida:=0;
+
+end;
+
+
+CREATE OR REPLACE PROCEDURE SP_LISTAR_RECEPCION (recepciones out SYS_REFCURSOR)
+is
+begin
+    open recepciones for select * from recepcion_producto;
+end;

@@ -369,3 +369,50 @@ def listado_empleados():
         lista.append(fila)
 
     return lista
+
+
+
+
+
+  ## Recepcion producto
+def RegistroRecepcionProducto(request):
+    data = {
+        'empleados':listado_recepciones(),
+    }
+    if request.method == 'POST':
+        id_recepcion_producto= request.POST.get('id_recepcion_producto')
+        orden_pedido_id_pedido = request.POST.get('orden_pedido_id_pedido')
+        fecha_recepcion_pro = request.POST.get('fecha_recepcion_pro')
+        
+        
+        salida = agregar_recepcion(id_recepcion_producto, orden_pedido_id_pedido, fecha_recepcion_pro)
+        if salida == 1:
+            data['mensaje'] = 'agregado correctamente'
+            data['recepciones'] = listado_empleados()
+        else:
+            data['mensaje'] = 'no se pudo guardar'
+
+    return render(request, 'app/RegistroRecepProducto.html', data)
+
+
+    
+def agregar_recepcion(id_recepcion_producto, orden_pedido_id_pedido, fecha_recepcion_pro):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('SP_AGREGAR_RECEPCION',[id_recepcion_producto, orden_pedido_id_pedido, fecha_recepcion_pro, salida])
+    return salida.getvalue()
+    
+
+def listado_recepciones():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_LISTAR_RECEPCION", [out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista  

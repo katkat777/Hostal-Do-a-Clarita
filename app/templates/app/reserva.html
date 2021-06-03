@@ -1,0 +1,70 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block contenido %}
+
+<br>
+<br>
+<H1>Registro de reserva</H1>
+<br>
+<br>
+<div class="card" style="width: 30rem;">
+    <div class="card-body">
+        <h2>Nuevo reserva</h2>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">id_reserva: </label>
+                <input type="number" class="form-control" name="id_reserva" placeholder="ej: 11111111-1" min="1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">fecha_reserva: </label>
+                <input type="date" name="fecha_reserva" class="form-control" placeholder="fecha reserva" >
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">cliente_id_cliente: </label>
+                <input type="number" name="cliente_id_cliente" class="form-control" placeholder="ej: 1111111" min="1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">transaccion_id_transaccion: </label>
+                <input type="number" name="transaccion_id_transaccion" class="form-control" placeholder="ej: 1111111" min="1">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-success mb-3">Guardar</button>
+            </div>
+        </form>
+
+        {{mensaje}}
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+
+
+        {% for p in reservas %}
+<div class="card" style="width: 30rem;">
+    <div class="card-body">
+        <h2>proveedor</h2>
+        <ul class="list-group">
+        
+            <li class="list-group-item list-group-item-action list-group-item-info"> id_reserva : {{ p.0 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> id_proveedor : {{ p.1 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> emp_proveedor : {{ p.2 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> emp_proveedor : {{ p.3 }} </li>
+        </ul>
+        <div>
+            <button class="btn btn-danger m-1">Eliminar</button>
+            <button class="btn btn-warning m-1">Editar</button>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+
+
+{% endfor %}
+
+{% endblock %} 

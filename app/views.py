@@ -38,7 +38,6 @@ def registrohabitacion(request):
 
     return render(request, 'app/registrohabitacion.html', data)
 
-
 def listado_habitaciones():
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
@@ -58,6 +57,8 @@ def agregar_habitacion(id_habitacion, precio, tipo_cama, caracteristicas, reserv
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('SP_AGREGAR_HABITACION',[id_habitacion, precio, tipo_cama, caracteristicas, reserva_id_reserva, accesorios, estado_habitacion_estado_habitacion_id, salida])
     return salida.getvalue()
+
+
 
 
 def registro(request):
@@ -80,8 +81,6 @@ def registro(request):
     return render(request, 'app/registro.html', data)
 
 
-
-
 def listado_clientes():
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
@@ -101,10 +100,6 @@ def agregar_cliente(rut, id_cliente, emp_cliente, id_huesped):
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('SP_AGREGAR_CLIENTE',[rut, id_cliente, emp_cliente, id_huesped, salida])
     return salida.getvalue()
-
-
-
-
 
 
 
@@ -130,7 +125,6 @@ def RegistroProducto(request):
     return render(request, 'app/RegistroProducto.html', data)
 
 
-    
 def agregar_producto(id_producto, precio, tipo_producto, stock, stock_critico, fech_venc, descripcion):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
@@ -156,8 +150,6 @@ def listado_productos():
 
 ##CU PROVEEDOR
 
-
-
 def RegistroProveedor(request):
     data = {
         'proveedores':listado_proveedores(),
@@ -174,9 +166,6 @@ def RegistroProveedor(request):
             data['mensaje'] = 'no se pudo guardar'
 
     return render(request, 'app/RegistroProveedor.html', data)
-    
-
-
 
 def agregar_proveedor(rut, id_proveedor, emp_proveedor):
     django_cursor = connection.cursor()
@@ -288,6 +277,46 @@ def listado_menus():
 
     cursor.callproc("SP_LISTAR_MENU", [out_cur])
 
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista
+
+#Reserva
+
+def RegistroReserva(request):
+    data = {
+        'reservas':listado_reservas(),
+    }
+    if request.method == 'POST':
+        id_reserva = request.POST.get('id_reserva')
+        fecha_reserva = request.POST.get('fecha_reserva')
+        cliente_id_cliente = request.POST.get('cliente_id_cliente')
+        transaccion_id_transaccion = request.POST.get('transaccion_id_transaccion')
+        salida = agregar_reserva(id_reserva, fecha_reserva, cliente_id_cliente,transaccion_id_transaccion)
+        if salida == 1:
+            data['mensaje'] = 'agregado correctamente'
+            data['reservas'] = listado_reservas()
+        else:
+            data['mensaje'] = 'no se pudo guardar'
+
+    return render(request, 'app/reserva.html', data)
+
+def agregar_reserva(id_reserva, fecha_reserva, cliente_id_cliente, transaccion_id_transaccion):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('SP_AGREGAR_RESERVA',[id_reserva, fecha_reserva, cliente_id_cliente, transaccion_id_transaccion, salida])
+    return salida.getvalue()
+    
+
+def listado_reservas():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_LISTAR_RESERVA", [out_cur])
     lista = []
     for fila in out_cur:
         lista.append(fila)

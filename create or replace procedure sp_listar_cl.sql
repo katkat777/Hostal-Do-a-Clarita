@@ -176,3 +176,25 @@ is
 begin
     open menus for select * from registro_comedor;
 end;
+
+CREATE OR REPLACE PROCEDURE sp_agregar_menu(
+    v_id_reserva varchar2,
+    v_fecha_reserva number,
+    v_cliente_id_cliente varchar2,
+    v_transaccion_id_transaccion varchar2,
+    v_salida out number
+) is
+
+begin
+    insert into reserva(id_reserva, fecha_reserva, cliente_id_cliente, transaccion_id_transaccion)
+    values( v_id_reserva, v_fecha_reserva, v_cliente_id_cliente, v_transaccion_id_transaccion);
+    commit;
+    v_salida:=1;
+
+    exception
+    when others then
+        v_salida:=0;
+
+end;
+
+

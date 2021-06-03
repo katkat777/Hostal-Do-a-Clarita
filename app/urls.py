@@ -14,7 +14,7 @@ urlpatterns = [
     path('reserva/', RegistroReserva, name="reserva"),
     path('RegistroEmpleado/', RegistroEmpleado, name="RegistroEmpleado"),
     path('RegistroRecepProducto/', RegistroRecepcionProducto, name="RegistroRecepProducto"),
-
+    path('RegistroHuesped/', RegistroHuesped, name="RegistroHuesped"),
 
 
 

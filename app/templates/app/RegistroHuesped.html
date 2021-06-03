@@ -1,0 +1,60 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block contenido %}
+
+<br>
+<br>
+<H1>Registro de huésped</H1>
+<br>
+<br>
+<div class="card" style="width: 30rem;">
+    <div class="card-body">
+        <h2>Nuevo huésped</h2>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Rut: </label>
+                <input type="text" class="form-control" name="rut" placeholder="ej: 111111111">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">ID: </label>
+                <input type="text" name="id_huesped" class="form-control" placeholder="ej: 1111111">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-success mb-3">Guardar</button>
+            </div>
+        </form>
+
+        {{mensaje}}
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+
+
+        {% for p in huespedes %}
+<div class="card" style="width: 30rem;">
+    <div class="card-body">
+        <h2>Huésped</h2>
+        <ul class="list-group">
+
+            <li class="list-group-item list-group-item-action list-group-item-info"> rut : {{ p.0 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> id_huesped: {{ p.1 }} </li>
+        </ul>
+        <div>
+            <button class="btn btn-danger m-1">Eliminar</button>
+            <button class="btn btn-warning m-1">Editar</button>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+
+
+{% endfor %}
+
+{% endblock %} 

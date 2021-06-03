@@ -416,3 +416,42 @@ def listado_recepciones():
         lista.append(fila)
 
     return lista  
+
+    #CU huesped
+
+    def RegistroHuesped(request):
+    data = {
+        'huespedes':listado_huespedes(),
+    }
+    if request.method == 'POST':
+        rut = request.POST.get('rut')
+        id_huesped = request.POST.get('id_huesped')
+        salida = agregar_huesped(rut, id_huesped)
+        if salida == 1:
+            data['mensaje'] = 'agregado correctamente'
+            data['huespedes'] = listado_huespedes()
+        else:
+            data['mensaje'] = 'no se pudo guardar'
+
+    return render(request, 'app/RegistroHuesped.html', data)
+
+def agregar_huesped(rut, id_huesped):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('SP_AGREGAR_HUESPED',[rut, id_huesped, salida])
+    return salida.getvalue()
+    
+
+def listado_huespedes():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_LISTAR_HUESPED", [out_cur])
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista
+

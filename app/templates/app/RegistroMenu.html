@@ -1,0 +1,76 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block contenido %}
+
+<br><br>
+<H1>Registro de comedor</H1>
+<br><br>
+<div class="card" style="width: 30rem;">
+    <div class="card-body">
+        <h2>Nuevo Menu</h2>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Id menu</label>
+            <input type="number" class="form-control" name="id_menu" placeholder="1" min="1">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Precio</label>
+            <input type="number" name="precio_menu" class="form-control"  placeholder="$150.000" min="1">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Tipo de plato</label>
+            <input type="text" name="tipo_plato" class="form-control" placeholder="Tipo de plato">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Tipo de servicio</label>
+            <input type="text" name="tipo_servicio"  class="form-control"  placeholder="Tipo de servicio">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">id reserva</label>
+            <input type="text" name="reserva_id_reserva"  class="form-control"  placeholder="11111">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">id_Empleado</label>
+            <input type="text" name="empleado_id_emp"  class="form-control"  placeholder="11111">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-success mb-3">Guardar</button>
+        </div>
+        </form>     
+
+        {{mensaje}}
+    </div>
+</div>
+
+        <br><br><br>
+
+
+        {% for p in menus %}
+<div class="card" style="width: 30rem;">
+    <div class="card-body">
+        <h2>producto</h2>
+        <ul class="list-group">
+            
+            <li class="list-group-item list-group-item-action list-group-item-info"> id_menu: {{ p.0 }} </li> 
+            <li class="list-group-item list-group-item-action list-group-item-info"> precio_menu : {{ p.1 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> tipo_plato : {{ p.2 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> tipo_servicio : {{ p.3 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> reserva_id_reserva : {{ p.4}} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> empleado_id_emp: {{ p.5 }} </li>
+            
+        </ul>
+        <div>
+            <button class ="btn btn-danger m-1" >Eliminar</button>
+            <button class ="btn btn-warning m-1" >Editar</button>
+        </div>
+    </div>
+</div>
+<br><br>
+
+
+{% endfor %}
+
+{% endblock %} 

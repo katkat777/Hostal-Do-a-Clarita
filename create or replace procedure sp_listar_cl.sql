@@ -143,3 +143,36 @@ is
 begin
     open proveedores for select * from proveedor;
 end;
+
+
+
+
+
+CREATE OR REPLACE  PROCEDURE sp_agregar_menu(
+    v_id_menu varchar2,
+    v_precio_menu number,
+    v_tipo_plato varchar2,
+    v_tipo_servicio varchar2,
+    v_reserva_id_reserva varchar2,
+    v_empleado_id_emp varchar2,
+    v_salida out number
+) is
+
+begin
+    insert into registro_comedor(id_menu, precio_menu, tipo_plato, tipo_servicio, reserva_id_reserva, empleado_id_emp)
+    values(v_id_menu, v_precio_menu, v_tipo_plato, v_tipo_servicio, v_reserva_id_reserva, v_empleado_id_emp);
+    commit;
+    v_salida:=1;
+
+    exception
+    when others then
+        v_salida:=0;
+
+end;
+
+
+CREATE OR REPLACE PROCEDURE SP_LISTAR_MENU (menus out SYS_REFCURSOR)
+is
+begin
+    open menus for select * from registro_comedor;
+end;

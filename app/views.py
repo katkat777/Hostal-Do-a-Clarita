@@ -246,3 +246,51 @@ def listado_facturas():
     return lista
 
 
+
+##cu menu
+
+
+def RegistroMenu(request):
+    data = {
+        'menus':listado_menus(),
+    }
+    if request.method == 'POST':
+        id_menu = request.POST.get('id_factura')
+        precio_menu = request.POST.get('transaccion_id_transaccion')
+        tipo_plato = request.POST.get('tipo_plato')
+        tipo_servicio = request.POST.get('tipo_servicio')
+        reserva_id_reserva = request.POST.get('reserva_id_reserva')
+        empleado_id_emp = request.POST.get('empleado_id_emp')
+        
+        salida = agregar_menu(id_menu, precio_menu, tipo_plato, tipo_servicio, reserva_id_reserva, empleado_id_emp)
+        if salida == 1:
+            data['mensaje'] = 'agregado correctamente'
+            data['menus'] = listado_menus()
+        else:
+            data['mensaje'] = 'no se pudo guardar'
+
+    return render(request, 'app/RegistroMenu.html', data)
+
+
+    
+def agregar_menu(id_menu, precio_menu, tipo_plato, tipo_servicio, reserva_id_reserva, empleado_id_emp):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('SP_AGREGAR_MENU',[id_menu, precio_menu, tipo_plato, tipo_servicio, reserva_id_reserva, empleado_id_emp, salida])
+    return salida.getvalue()
+    
+
+def listado_menus():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_LISTAR_MENU", [out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista
+

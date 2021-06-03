@@ -1,0 +1,61 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block contenido %}
+
+<br><br>
+<H1>Registro de empleado</H1>
+<br><br>
+<div class="card" style="width: 30rem;">
+    <div class="card-body">
+        <h2>Nuevo empleado</h2>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Rut</label>
+            <input type="text" class="form-control" name="rut" placeholder="1" min="1">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Id_emp</label>
+            <input type="text" name="id_emp" class="form-control"  placeholder="11111" min="1">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Tipo de empleado</label>
+            <input type="text" name="tipo_emp" class="form-control" placeholder="full">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-success mb-3">Guardar</button>
+        </div>
+        </form>     
+
+        {{mensaje}}
+    </div>
+</div>
+
+        <br><br><br>
+
+
+        {% for p in empleados %}
+<div class="card" style="width: 30rem;">
+    <div class="card-body">
+        <h2>empleado</h2>
+        <ul class="list-group">
+            
+            <li class="list-group-item list-group-item-action list-group-item-info"> Rut : {{ p.0 }} </li> 
+            <li class="list-group-item list-group-item-action list-group-item-info"> id_emp : {{ p.1 }} </li>
+            <li class="list-group-item list-group-item-action list-group-item-info"> tipo_emp : {{ p.2 }} </li>
+            
+        </ul>
+        <div>
+            <button class ="btn btn-danger m-1" >Eliminar</button>
+            <button class ="btn btn-warning m-1" >Editar</button>
+        </div>
+    </div>
+</div>
+<br><br>
+
+
+{% endfor %}
+
+{% endblock %} 

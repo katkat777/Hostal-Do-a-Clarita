@@ -323,3 +323,49 @@ def listado_reservas():
 
     return lista
 
+
+
+
+## empleado
+
+def RegistroEmpleado(request):
+    data = {
+        'empleados':listado_empleados(),
+    }
+    if request.method == 'POST':
+        rut = request.POST.get('rut')
+        id_emp = request.POST.get('id_emp')
+        tipo_emp = request.POST.get('tipo_emp')
+        
+        
+        salida = agregar_empleado(rut, id_emp, tipo_emp)
+        if salida == 1:
+            data['mensaje'] = 'agregado correctamente'
+            data['empleados'] = listado_empleados()
+        else:
+            data['mensaje'] = 'no se pudo guardar'
+
+    return render(request, 'app/RegistroEmpleado.html', data)
+
+
+    
+def agregar_empleado(rut, id_emp, tipo_emp):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('SP_AGREGAR_EMPLEADO',[rut, id_emp, tipo_emp, salida])
+    return salida.getvalue()
+    
+
+def listado_empleados():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_LISTAR_EMPLEADO", [out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista

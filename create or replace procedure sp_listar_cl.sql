@@ -177,7 +177,21 @@ begin
     open menus for select * from registro_comedor;
 end;
 
+
+
 CREATE OR REPLACE PROCEDURE sp_agregar_menu(
+    v_id_reserva varchar2,
+    v_fecha_reserva number,
+    v_cliente_id_cliente varchar2,
+    v_transaccion_id_transaccion varchar2,
+    v_salida out number
+) is
+
+
+
+
+
+CREATE OR REPLACE  PROCEDURE sp_agregar_reserva(
     v_id_reserva varchar2,
     v_fecha_reserva number,
     v_cliente_id_cliente varchar2,
@@ -197,4 +211,38 @@ begin
 
 end;
 
+CREATE OR REPLACE PROCEDURE SP_LISTAR_RESERVA (reservas out SYS_REFCURSOR)
+is
+begin
+    open reservas for select * from reserva;
+end;
 
+
+
+
+
+CREATE OR REPLACE  PROCEDURE SP_REGISTRAR_EMPLEADO(
+    v_rut varchar2,
+    v_id_emp varchar2,
+    v_tipo_emp varchar2,
+    v_salida out number
+) is
+
+begin
+    insert into empleado(rut, id_emp, tipo_emp)
+    values(v_rut, v_id_emp, v_tipo_emp);
+    commit;
+    v_salida:=1;
+
+    exception
+    when others then
+        v_salida:=0;
+
+end;
+
+
+CREATE OR REPLACE PROCEDURE SP_LISTAR_EMPLEADO (empleados out SYS_REFCURSOR)
+is
+begin
+    open empleados for select * from empleado;
+end;

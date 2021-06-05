@@ -1,5 +1,5 @@
 --------------------------------------------------------
--- Archivo creado  - miércoles-junio-02-2021   
+-- Archivo creado  - sábado-junio-05-2021   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Sequence ESTADO_HABITACION_ESTADO_HABIT
@@ -323,6 +323,20 @@
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
 --------------------------------------------------------
+--  DDL for Table HUESPED
+--------------------------------------------------------
+
+  CREATE TABLE "C##HOSTAL"."HUESPED" 
+   (	"RUT" VARCHAR2(20 BYTE), 
+	"ID_HUESPED" VARCHAR2(20 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
 --  DDL for Table IMPRESION
 --------------------------------------------------------
 
@@ -416,9 +430,12 @@
    (	"ID_RECEPCION_PRODUCTO" VARCHAR2(20 BYTE), 
 	"ORDEN_PEDIDO_ID_PEDIDO" VARCHAR2(20 BYTE), 
 	"FECHA_RECEPCION_PRO" DATE
-   ) SEGMENT CREATION DEFERRED 
+   ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
 --------------------------------------------------------
 --  DDL for Table REGISTRO
@@ -712,7 +729,7 @@ Insert into C##HOSTAL.AUTH_PERMISSION (ID,NAME,CONTENT_TYPE_ID,CODENAME) values 
 Insert into C##HOSTAL.AUTH_PERMISSION (ID,NAME,CONTENT_TYPE_ID,CODENAME) values ('77','Can add django session','33','add_djangosession');
 REM INSERTING into C##HOSTAL.AUTH_USER
 SET DEFINE OFF;
-Insert into C##HOSTAL.AUTH_USER (ID,PASSWORD,LAST_LOGIN,IS_SUPERUSER,USERNAME,FIRST_NAME,LAST_NAME,EMAIL,IS_STAFF,IS_ACTIVE,DATE_JOINED) values ('1','pbkdf2_sha256$260000$s9DOwTOJfFfGazQvWnz9dc$6cRAYY4xX0Q5ARWqaMjx5/LZGLKrC66+Fmt1ME8olvM=',to_timestamp('28/05/21 01:29:28,544435000','DD/MM/RR HH24:MI:SSXFF'),'1','hostal',null,null,'iv.duranl@duocuc.cl','1','1',to_timestamp('14/05/21 02:26:28,488095000','DD/MM/RR HH24:MI:SSXFF'));
+Insert into C##HOSTAL.AUTH_USER (ID,PASSWORD,LAST_LOGIN,IS_SUPERUSER,USERNAME,FIRST_NAME,LAST_NAME,EMAIL,IS_STAFF,IS_ACTIVE,DATE_JOINED) values ('1','pbkdf2_sha256$260000$s9DOwTOJfFfGazQvWnz9dc$6cRAYY4xX0Q5ARWqaMjx5/LZGLKrC66+Fmt1ME8olvM=',to_timestamp('05/06/21 01:42:48,638399000','DD/MM/RR HH24:MI:SSXFF'),'1','hostal',null,null,'iv.duranl@duocuc.cl','1','1',to_timestamp('14/05/21 02:26:28,488095000','DD/MM/RR HH24:MI:SSXFF'));
 REM INSERTING into C##HOSTAL.AUTH_USER_GROUPS
 SET DEFINE OFF;
 REM INSERTING into C##HOSTAL.AUTH_USER_USER_PERMISSIONS
@@ -803,11 +820,14 @@ Insert into C##HOSTAL.DJANGO_MIGRATIONS (ID,APP,NAME,APPLIED) values ('20','app'
 Insert into C##HOSTAL.DJANGO_MIGRATIONS (ID,APP,NAME,APPLIED) values ('21','app','0003_alter_cliente_table',to_timestamp('14/05/21 02:49:17,694591000','DD/MM/RR HH24:MI:SSXFF'));
 REM INSERTING into C##HOSTAL.DJANGO_SESSION
 SET DEFINE OFF;
+Insert into C##HOSTAL.DJANGO_SESSION (SESSION_KEY,EXPIRE_DATE) values ('0pdzx6qp1lqyh28p7kpp9o91d2oc36vh',to_timestamp('18/06/21 23:51:33,933725000','DD/MM/RR HH24:MI:SSXFF'));
 Insert into C##HOSTAL.DJANGO_SESSION (SESSION_KEY,EXPIRE_DATE) values ('2vneb0q9r86stixr7zuwbst4cpj39gb7',to_timestamp('09/06/21 01:34:10,178745000','DD/MM/RR HH24:MI:SSXFF'));
 Insert into C##HOSTAL.DJANGO_SESSION (SESSION_KEY,EXPIRE_DATE) values ('d65bh32hytg5zc19nohd53tss1opkse3',to_timestamp('11/06/21 01:29:28,547428000','DD/MM/RR HH24:MI:SSXFF'));
+Insert into C##HOSTAL.DJANGO_SESSION (SESSION_KEY,EXPIRE_DATE) values ('l2m32s2dwekmy6nihy3mlzd4yhti3c2m',to_timestamp('19/06/21 01:28:49,024845000','DD/MM/RR HH24:MI:SSXFF'));
 Insert into C##HOSTAL.DJANGO_SESSION (SESSION_KEY,EXPIRE_DATE) values ('zwgj9kmo2wcxaf2uast4jmlzmxzini6k',to_timestamp('08/06/21 04:25:03,575573000','DD/MM/RR HH24:MI:SSXFF'));
 REM INSERTING into C##HOSTAL.EMPLEADO
 SET DEFINE OFF;
+Insert into C##HOSTAL.EMPLEADO (RUT,ID_EMP,TIPO_EMP) values ('333','3333','FDFFD');
 Insert into C##HOSTAL.EMPLEADO (RUT,ID_EMP,TIPO_EMP) values ('123','1','dsa');
 REM INSERTING into C##HOSTAL.ESTADO_HABITACION
 SET DEFINE OFF;
@@ -817,6 +837,14 @@ Insert into C##HOSTAL.FACTURA (ID_FACTURA,TRANSACCION_ID_TRANSACCION,FECHA_FACTU
 REM INSERTING into C##HOSTAL.HABITACION
 SET DEFINE OFF;
 Insert into C##HOSTAL.HABITACION (ID_HABITACION,PRECIO,TIPO_CAMA,CARACTERISTICAS,RESERVA_ID_RESERVA,ACCESORIOS,ESTADO_HABITACION_ESTADO_HABITACION_ID) values ('4','4','ggggdfgdf','fgddgfgdfdfg','4','rfgfdfgdf','4');
+REM INSERTING into C##HOSTAL.HUESPED
+SET DEFINE OFF;
+Insert into C##HOSTAL.HUESPED (RUT,ID_HUESPED) values ('24323','3343');
+Insert into C##HOSTAL.HUESPED (RUT,ID_HUESPED) values ('24323','3343');
+Insert into C##HOSTAL.HUESPED (RUT,ID_HUESPED) values ('24323','3343');
+Insert into C##HOSTAL.HUESPED (RUT,ID_HUESPED) values ('24323','3343');
+Insert into C##HOSTAL.HUESPED (RUT,ID_HUESPED) values ('23423','423');
+Insert into C##HOSTAL.HUESPED (RUT,ID_HUESPED) values ('23423','423');
 REM INSERTING into C##HOSTAL.IMPRESION
 SET DEFINE OFF;
 REM INSERTING into C##HOSTAL.METODO_PAGO
@@ -834,11 +862,14 @@ Insert into C##HOSTAL.PROVEEDOR (RUT,ID_PROVEEDOR,EMP_PROVEEDOR) values ('345434
 Insert into C##HOSTAL.PROVEEDOR (RUT,ID_PROVEEDOR,EMP_PROVEEDOR) values ('12312','312','123');
 REM INSERTING into C##HOSTAL.RECEPCION_PRODUCTO
 SET DEFINE OFF;
+Insert into C##HOSTAL.RECEPCION_PRODUCTO (ID_RECEPCION_PRODUCTO,ORDEN_PEDIDO_ID_PEDIDO,FECHA_RECEPCION_PRO) values ('1','1',to_date('04/06/21','DD/MM/RR'));
 REM INSERTING into C##HOSTAL.REGISTRO
 SET DEFINE OFF;
 Insert into C##HOSTAL.REGISTRO (ID_REGISTRO,CUENTA_ID_CUENTA,FECHA_REGISTRO,ADMINISTRADOR_ID_ADM) values ('1','1',to_date('26/05/21','DD/MM/RR'),'1');
 REM INSERTING into C##HOSTAL.REGISTRO_COMEDOR
 SET DEFINE OFF;
+Insert into C##HOSTAL.REGISTRO_COMEDOR (ID_MENU,PRECIO_MENU,TIPO_PLATO,TIPO_SERVICIO,RESERVA_ID_RESERVA,EMPLEADO_ID_EMP) values ('33','33223','GFRG','FDDFG','44','44');
+Insert into C##HOSTAL.REGISTRO_COMEDOR (ID_MENU,PRECIO_MENU,TIPO_PLATO,TIPO_SERVICIO,RESERVA_ID_RESERVA,EMPLEADO_ID_EMP) values ('11','3242423','FDG','DFG','444','444');
 Insert into C##HOSTAL.REGISTRO_COMEDOR (ID_MENU,PRECIO_MENU,TIPO_PLATO,TIPO_SERVICIO,RESERVA_ID_RESERVA,EMPLEADO_ID_EMP) values ('112','212','sff','dsf','1221','2121');
 REM INSERTING into C##HOSTAL.RELACION_CLIENTE_RESERVA
 SET DEFINE OFF;
@@ -846,6 +877,7 @@ REM INSERTING into C##HOSTAL.RELACION_PRODUCTO_ORDENPEDIDO
 SET DEFINE OFF;
 REM INSERTING into C##HOSTAL.RESERVA
 SET DEFINE OFF;
+Insert into C##HOSTAL.RESERVA (ID_RESERVA,FECHA_RESERVA,CLIENTE_ID_CLIENTE,TRANSACCION_ID_TRANSACCION) values ('33',to_date('02/06/21','DD/MM/RR'),'333','333333');
 Insert into C##HOSTAL.RESERVA (ID_RESERVA,FECHA_RESERVA,CLIENTE_ID_CLIENTE,TRANSACCION_ID_TRANSACCION) values ('1',to_date('02/06/21','DD/MM/RR'),'1','1');
 REM INSERTING into C##HOSTAL.SOLICITUD_DE_SERVICIO
 SET DEFINE OFF;
@@ -1211,6 +1243,9 @@ Insert into C##HOSTAL.USUARIO (RUT,NOMBRE,APELLIDO,FECH_NAC,TELEFONO,REGISTRO_ID
 
   CREATE UNIQUE INDEX "C##HOSTAL"."RECEPCIÓN_PRODUCTO__IDX" ON "C##HOSTAL"."RECEPCION_PRODUCTO" ("ORDEN_PEDIDO_ID_PEDIDO") 
   PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
 --------------------------------------------------------
 --  DDL for Index RECEPCIÓN_PRODUCTO_PK
@@ -1218,6 +1253,9 @@ Insert into C##HOSTAL.USUARIO (RUT,NOMBRE,APELLIDO,FECH_NAC,TELEFONO,REGISTRO_ID
 
   CREATE UNIQUE INDEX "C##HOSTAL"."RECEPCIÓN_PRODUCTO_PK" ON "C##HOSTAL"."RECEPCION_PRODUCTO" ("ID_RECEPCION_PRODUCTO") 
   PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
 --------------------------------------------------------
 --  DDL for Index REGISTRO__IDX
@@ -1940,6 +1978,9 @@ Insert into C##HOSTAL.USUARIO (RUT,NOMBRE,APELLIDO,FECH_NAC,TELEFONO,REGISTRO_ID
 
   CREATE UNIQUE INDEX "C##HOSTAL"."RECEPCIÓN_PRODUCTO__IDX" ON "C##HOSTAL"."RECEPCION_PRODUCTO" ("ORDEN_PEDIDO_ID_PEDIDO") 
   PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
 --------------------------------------------------------
 --  DDL for Index RECEPCIÓN_PRODUCTO_PK
@@ -1947,6 +1988,9 @@ Insert into C##HOSTAL.USUARIO (RUT,NOMBRE,APELLIDO,FECH_NAC,TELEFONO,REGISTRO_ID
 
   CREATE UNIQUE INDEX "C##HOSTAL"."RECEPCIÓN_PRODUCTO_PK" ON "C##HOSTAL"."RECEPCION_PRODUCTO" ("ID_RECEPCION_PRODUCTO") 
   PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS" ;
 --------------------------------------------------------
 --  DDL for Index REGISTRO__IDX
@@ -2167,6 +2211,31 @@ end;
 
 /
 --------------------------------------------------------
+--  DDL for Procedure SP_AGREGAR_EMPLEADO
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE EDITIONABLE PROCEDURE "C##HOSTAL"."SP_AGREGAR_EMPLEADO" (
+    v_rut varchar2,
+    v_id_emp varchar2,
+    v_tipo_emp varchar2,
+    v_salida out number
+) is
+
+begin
+    insert into empleado(rut, id_emp, tipo_emp)
+    values(v_rut, v_id_emp, v_tipo_emp);
+    commit;
+    v_salida:=1;
+
+    exception
+    when others then
+        v_salida:=0;
+
+end;
+
+/
+--------------------------------------------------------
 --  DDL for Procedure SP_AGREGAR_FACTURA
 --------------------------------------------------------
 set define off;
@@ -2212,6 +2281,30 @@ set define off;
 begin
     insert into habitacion(id_habitacion, precio, tipo_cama, caracteristicas, reserva_id_reserva, accesorios, estado_habitacion_estado_habitacion_id)
     values(v_id_habitacion, v_precio, v_tipo_cama, v_caracteristicas, v_reserva_id_reserva, v_accesorios, v_estado_habitacion_estado_habitacion_id);
+    commit;
+    v_salida:=1;
+
+    exception
+    when others then
+        v_salida:=0;
+
+end;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure SP_AGREGAR_HUESPED
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE EDITIONABLE PROCEDURE "C##HOSTAL"."SP_AGREGAR_HUESPED" (
+    v_rut varchar2,
+    v_id_huesped varchar2,
+    v_salida out number
+) is
+
+begin
+    insert into huesped(rut, id_huesped)
+    values(v_rut, v_id_huesped);
     commit;
     v_salida:=1;
 
@@ -2305,6 +2398,57 @@ end;
 
 /
 --------------------------------------------------------
+--  DDL for Procedure SP_AGREGAR_RECEPCION
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE EDITIONABLE PROCEDURE "C##HOSTAL"."SP_AGREGAR_RECEPCION" (
+    v_id_recepcion_producto varchar2,
+    v_orden_pedido_id_pedido varchar2,
+    v_fecha_recepcion_pro date,
+    v_salida out number
+) is
+
+begin
+    insert into recepcion_producto(id_recepcion_producto, orden_pedido_id_pedido, fecha_recepcion_pro)
+    values(v_id_recepcion_producto, v_orden_pedido_id_pedido, v_fecha_recepcion_pro);
+    commit;
+    v_salida:=1;
+
+    exception
+    when others then
+        v_salida:=0;
+
+end;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure SP_AGREGAR_RESERVA
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE EDITIONABLE PROCEDURE "C##HOSTAL"."SP_AGREGAR_RESERVA" (
+    v_id_reserva varchar2,
+    v_fecha_reserva date,
+    v_cliente_id_cliente varchar2,
+    v_transaccion_id_transaccion varchar2,
+    v_salida out number
+) is
+
+begin
+    insert into reserva(id_reserva, fecha_reserva, cliente_id_cliente, transaccion_id_transaccion)
+    values( v_id_reserva, v_fecha_reserva, v_cliente_id_cliente, v_transaccion_id_transaccion);
+    commit;
+    v_salida:=1;
+
+    exception
+    when others then
+        v_salida:=0;
+
+end;
+
+/
+--------------------------------------------------------
 --  DDL for Procedure SP_LISTAR_CLIENTES
 --------------------------------------------------------
 set define off;
@@ -2313,6 +2457,18 @@ set define off;
 is
 begin
     open clientes for select * from cliente;
+end;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure SP_LISTAR_EMPLEADO
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE EDITIONABLE PROCEDURE "C##HOSTAL"."SP_LISTAR_EMPLEADO" (empleados out SYS_REFCURSOR)
+is
+begin
+    open empleados for select * from empleado;
 end;
 
 /
@@ -2337,6 +2493,18 @@ set define off;
 is
 begin
     open habitaciones for select * from habitacion;
+end;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure SP_LISTAR_HUESPED
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE EDITIONABLE PROCEDURE "C##HOSTAL"."SP_LISTAR_HUESPED" (huespedes out SYS_REFCURSOR)
+is
+begin
+    open huespedes for select * from huesped;
 end;
 
 /
@@ -2373,6 +2541,30 @@ set define off;
 is
 begin
     open proveedores for select * from proveedor;
+end;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure SP_LISTAR_RECEPCION
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE EDITIONABLE PROCEDURE "C##HOSTAL"."SP_LISTAR_RECEPCION" (recepciones out SYS_REFCURSOR)
+is
+begin
+    open recepciones for select * from recepcion_producto;
+end;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure SP_LISTAR_RESERVA
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE EDITIONABLE PROCEDURE "C##HOSTAL"."SP_LISTAR_RESERVA" (menus out SYS_REFCURSOR)
+is
+begin
+    open menus for select * from reserva;
 end;
 
 /
@@ -2759,6 +2951,9 @@ end;
   ALTER TABLE "C##HOSTAL"."RECEPCION_PRODUCTO" MODIFY ("FECHA_RECEPCION_PRO" NOT NULL ENABLE);
   ALTER TABLE "C##HOSTAL"."RECEPCION_PRODUCTO" ADD CONSTRAINT "RECEPCIÓN_PRODUCTO_PK" PRIMARY KEY ("ID_RECEPCION_PRODUCTO")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS"  ENABLE;
 --------------------------------------------------------
 --  Constraints for Table REGISTRO

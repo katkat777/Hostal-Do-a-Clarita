@@ -12,9 +12,6 @@ class Administrador(models.Model):
     rut = models.OneToOneField('Usuario', models.DO_NOTHING, db_column='rut', primary_key=True)
     id_adm = models.CharField(unique=True, max_length=20)
 
-    def __str__(self) :
-        return self.rut
-
     class Meta:
         managed = False
         db_table = 'administrador'
@@ -25,9 +22,6 @@ class AppCliente(models.Model):
     rut = models.CharField(unique=True, max_length=11, blank=True, null=True)
     nombre = models.CharField(max_length=50, blank=True, null=True)
     apellido = models.CharField(max_length=50, blank=True, null=True)
-
-    def __str__(self) :
-        return self.id
 
     class Meta:
         managed = False
@@ -108,8 +102,6 @@ class Cliente(models.Model):
     id_cliente = models.CharField(unique=True, max_length=20)
     emp_cliente = models.CharField(max_length=20)
     id_huesped = models.CharField(unique=True, max_length=20, blank=True, null=True)
-    def __str__(self) :
-        return self.rut
 
     class Meta:
         managed = False
@@ -223,14 +215,20 @@ class Habitacion(models.Model):
     caracteristicas = models.CharField(max_length=50)
     reserva_id_reserva = models.ForeignKey('Reserva', models.DO_NOTHING, db_column='reserva_id_reserva')
     accesorios = models.CharField(max_length=50)
-    estado_habitacion_estado_habitacion_id = models.IntegerField()
-
-    def __str__(self) :
-        return self.id_habitacion
+    estado_habitacion_estado_habitacion_id = models.FloatField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'habitacion'
+
+
+class Huesped(models.Model):
+    rut = models.CharField(max_length=20, blank=True, null=True)
+    id_huesped = models.CharField(max_length=20, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'huesped'
 
 
 class Impresion(models.Model):
@@ -284,7 +282,7 @@ class Producto(models.Model):
     tipo_producto = models.CharField(max_length=20)
     stock = models.CharField(max_length=20)
     stock_critico = models.CharField(max_length=20)
-    fech_venc = models.BigIntegerField()
+    fech_venc = models.DateField()
     descripcion = models.CharField(max_length=50)
 
     class Meta:
@@ -317,12 +315,6 @@ class Registro(models.Model):
     cuenta_id_cuenta = models.CharField(max_length=50)
     fecha_registro = models.DateField()
     administrador_id_adm = models.ForeignKey(Administrador, models.DO_NOTHING, db_column='administrador_id_adm')
-
-    def __str__(self) :
-        return self.id_registro,
-        return self.cuenta_id_cuenta,
-        return self.fecha_registro,
-        return self.administrador_id_adm
 
     class Meta:
         managed = False

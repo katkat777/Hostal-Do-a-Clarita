@@ -244,8 +244,8 @@ def RegistroMenu(request):
         'menus':listado_menus(),
     }
     if request.method == 'POST':
-        id_menu = request.POST.get('id_factura')
-        precio_menu = request.POST.get('transaccion_id_transaccion')
+        id_menu = request.POST.get('id_menu')
+        precio_menu = request.POST.get('precio_menu')
         tipo_plato = request.POST.get('tipo_plato')
         tipo_servicio = request.POST.get('tipo_servicio')
         reserva_id_reserva = request.POST.get('reserva_id_reserva')
@@ -377,7 +377,7 @@ def listado_empleados():
   ## Recepcion producto
 def RegistroRecepcionProducto(request):
     data = {
-        'empleados':listado_recepciones(),
+        'recepciones':listado_recepciones(),
     }
     if request.method == 'POST':
         id_recepcion_producto= request.POST.get('id_recepcion_producto')
@@ -417,7 +417,7 @@ def listado_recepciones():
 
     return lista  
 
-  #CU huesped
+#CU huesped
 
 def RegistroHuesped(request):
     data = {
@@ -435,13 +435,16 @@ def RegistroHuesped(request):
 
     return render(request, 'app/RegistroHuesped.html', data)
 
+
+
+
 def agregar_huesped(rut, id_huesped):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('SP_AGREGAR_HUESPED',[rut, id_huesped, salida])
     return salida.getvalue()
-    
+
 
 def listado_huespedes():
     django_cursor = connection.cursor()

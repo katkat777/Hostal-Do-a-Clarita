@@ -34,19 +34,18 @@
                     <li> <a href="{% url 'home' %}"> Inicio </a> </li>
                     <li> <a href="{% url 'contacto' %}">Contacto</a> </li>
                     <li><a href="{% url 'galeria' %}">Galería</a></li>
-                    <li><a href="{% url 'registro' %}">Registro</a></li>
-                    <li><a href="{% url 'registrohabitacion' %}">Registro habitacion</a></li>
-                    <li><a href="{% url 'RegistroProducto' %}">Registro Producto</a></li>
-                    <li><a href="{% url 'RegistroFactura' %}">Registro Factura</a></li>
-                    <li><a href="{% url 'RegistroProveedor' %}">Registro Proveedor</a></li>
-                    <li><a href="{% url 'RegistroMenu' %}">Registro de comedor</a></li>
-                    <li><a href="{% url 'reserva' %}">Reserva</a></li>
-                    <li><a href="{% url 'RegistroEmpleado' %}">Registro de empleado</a></li>
-                    <li><a href="{% url 'RegistroRecepProducto' %}">Registro de recepcion de producto</a></li>
-                    <li><a href="{% url 'RegistroHuesped' %}">Registro de huesped</a></li>
-
-
                     {% if user.is_authenticated %}
+                    <li><a href="{% url 'registro' %}">Cliente</a></li>
+                    <li><a href="{% url 'registrohabitacion' %}">Habitacion</a></li>
+                    <li><a href="{% url 'RegistroProducto' %}">Producto</a></li>
+                    <li><a href="{% url 'RegistroFactura' %}">Factura</a></li>
+                    <li><a href="{% url 'RegistroProveedor' %}">Proveedor</a></li>
+                    <li><a href="{% url 'RegistroMenu' %}">Comedor</a></li>
+                    <li><a href="{% url 'reserva' %}">Reserva</a></li>
+                    <li><a href="{% url 'RegistroEmpleado' %}">Empleado</a></li>
+                    <li><a href="{% url 'RegistroRecepProducto' %}">Recepcion de producto</a></li>
+                    <li><a href="{% url 'RegistroHuesped' %}">Huesped</a></li>
+
 
                     <li>
                         <a href="{% url 'logout' %}">Cerrar sesion</a>
@@ -57,7 +56,7 @@
                     </li>
 
                     {% else %}
-                       
+                    
                     <li>
                         <a href="{% url 'login' %}">Iniciar sesion</a>
                     </li>

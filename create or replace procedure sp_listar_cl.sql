@@ -188,9 +188,6 @@ CREATE OR REPLACE PROCEDURE sp_agregar_menu(
 ) is
 
 
-
-
-
 CREATE OR REPLACE  PROCEDURE sp_agregar_reserva(
     v_id_reserva varchar2,
     v_fecha_reserva number,
@@ -217,10 +214,6 @@ begin
     open reservas for select * from reserva;
 end;
 
-
-
-
-
 CREATE OR REPLACE  PROCEDURE SP_REGISTRAR_EMPLEADO(
     v_rut varchar2,
     v_id_emp varchar2,
@@ -246,8 +239,6 @@ is
 begin
     open empleados for select * from empleado;
 end;
-
-
 
 
 
@@ -278,11 +269,8 @@ begin
 end;
 
 
-
-
-
-
 ------------------------------
+
 
 
 CREATE TABLE "C##HOSTAL"."HUESPED" 

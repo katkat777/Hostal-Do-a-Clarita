@@ -303,7 +303,7 @@ class Proveedor(models.Model):
 class RecepcionProducto(models.Model):
     id_recepcion_producto = models.CharField(primary_key=True, max_length=20)
     orden_pedido_id_pedido = models.CharField(max_length=20)
-    fecha_recepcion_pro = models.DateField()
+    fecha_recepcion_pro = models.CharField(max_length=20)
 
     class Meta:
         managed = False

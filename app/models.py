@@ -199,7 +199,7 @@ class EstadoHabitacion(models.Model):
 class Factura(models.Model):
     id_factura = models.CharField(primary_key=True, max_length=20)
     transaccion_id_transaccion = models.CharField(max_length=50)
-    fecha_factura = models.DateField()
+    fecha_factura = models.CharField(max_length=50)
     detalle = models.CharField(max_length=50)
     total = models.CharField(max_length=50)
 
@@ -269,7 +269,7 @@ class OrdenPedido(models.Model):
     recepcion_producto_id_recepcion_producto = models.CharField(max_length=20)
     empleado_id_emp = models.ForeignKey(Empleado, models.DO_NOTHING, db_column='empleado_id_emp')
     proveedor_id_proveedor = models.ForeignKey('Proveedor', models.DO_NOTHING, db_column='proveedor_id_proveedor')
-    fecha_orden_pedido = models.DateField()
+    fecha_orden_pedido = models.CharField(max_length=50)
 
     class Meta:
         managed = False
@@ -282,7 +282,7 @@ class Producto(models.Model):
     tipo_producto = models.CharField(max_length=20)
     stock = models.CharField(max_length=20)
     stock_critico = models.CharField(max_length=20)
-    fech_venc = models.DateField()
+    fech_venc = models.CharField(max_length=20)
     descripcion = models.CharField(max_length=50)
 
     class Meta:

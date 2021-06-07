@@ -59,7 +59,7 @@ CREATE OR REPLACE  PROCEDURE sp_agregar_producto(
     v_tipo_producto varchar2,
     v_stock varchar2,
     v_stock_critico varchar2,
-    v_fech_venc date,
+    v_fech_venc varchar2,
     v_descripcion varchar2,
     v_salida out number
 ) is
@@ -88,7 +88,7 @@ end;
 CREATE OR REPLACE  PROCEDURE sp_agregar_factura(
     v_id_factura varchar2,
     v_transaccion_id_transaccion varchar2,
-    v_fecha_factura date,
+    v_fecha_factura varchar2,
     v_detalle varchar2,
     v_total varchar2,
     v_salida out number
@@ -245,7 +245,7 @@ end;
 CREATE OR REPLACE  PROCEDURE SP_REGISTRAR_RECEPCION(
     v_id_recepcion_producto varchar2,
     v_orden_pedido_id_pedido varchar2,
-    v_fecha_recepcion_pro date,
+    v_fecha_recepcion_pro varchar2,
     v_salida out number
 ) is
 

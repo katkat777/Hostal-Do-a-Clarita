@@ -1,7 +1,8 @@
 from app.models import *
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.db import connection
 import cx_Oracle
+
 
 # Create your views here.
 
@@ -57,6 +58,7 @@ def agregar_habitacion(id_habitacion, precio, tipo_cama, caracteristicas, reserv
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('SP_AGREGAR_HABITACION',[id_habitacion, precio, tipo_cama, caracteristicas, reserva_id_reserva, accesorios, estado_habitacion_estado_habitacion_id, salida])
     return salida.getvalue()
+
 
 
 
@@ -191,18 +193,19 @@ def listado_proveedores():
 
 #cu factura
 
+
+
 def RegistroFactura(request):
     data = {
         'facturas':listado_facturas(),
     }
     if request.method == 'POST':
         id_factura = request.POST.get('id_factura')
-        Transaccion_id_transaccion = request.POST.get('transaccion_id_transaccion')
+        transaccion_id_transaccion = request.POST.get('transaccion_id_transaccion')
         fecha_factura = request.POST.get('fecha_factura')
         detalle = request.POST.get('detalle')
         total = request.POST.get('total')
-        
-        salida = agregar_factura(id_factura, Transaccion_id_transaccion, fecha_factura, detalle, total)
+        salida = agregar_factura(id_factura, transaccion_id_transaccion, fecha_factura, detalle, total)
         if salida == 1:
             data['mensaje'] = 'agregado correctamente'
             data['facturas'] = listado_facturas()
@@ -213,11 +216,11 @@ def RegistroFactura(request):
 
 
     
-def agregar_factura(id_factura, Transaccion_id_transaccion, fecha_factura, detalle, total):
+def agregar_factura(id_factura, transaccion_id_transaccion, fecha_factura, detalle, total):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('SP_AGREGAR_FACTURA',[id_factura, Transaccion_id_transaccion, fecha_factura, detalle, total, salida])
+    cursor.callproc('SP_AGREGAR_FACTURA',[id_factura, transaccion_id_transaccion, fecha_factura, detalle, total, salida])
     return salida.getvalue()
     
 
@@ -237,6 +240,17 @@ def listado_facturas():
 
 
 ##cu menu
+
+def CancelarReserva(request, id_menu):
+    reserva = Reserva.objects.get(id=id_menu)
+    user = request.user
+    if request.method == 'POST':
+            reserva.delete()
+            return redirect('reserva/ver-reservas/')
+
+    else:
+        return redirect('/')
+
 
 
 def RegistroMenu(request):
@@ -259,6 +273,7 @@ def RegistroMenu(request):
             data['mensaje'] = 'no se pudo guardar'
 
     return render(request, 'app/RegistroMenu.html', data)
+    
 
 
     
@@ -282,6 +297,8 @@ def listado_menus():
         lista.append(fila)
 
     return lista
+
+
 
 #Reserva
 
@@ -457,7 +474,3 @@ def listado_huespedes():
         lista.append(fila)
 
     return lista
-
-
-
-

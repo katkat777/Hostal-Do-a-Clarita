@@ -45,7 +45,10 @@
             <li class="list-group-item list-group-item-action list-group-item-info"> id_huesped: {{ p.1 }} </li>
         </ul>
         <div>
-            <button class="btn btn-danger m-1">Eliminar</button>
+            <a href="{% p.pk %}" class="btn btn-danger m-1" > Eliminar </a> 
+            <a href="{% p.pk %}" class="btn btn-warning m-1"><span class="glyphicon glyphicon-pencil" >Edit</span></a>  
+
+
             <button class="btn btn-warning m-1">Editar</button>
         </div>
     </div>

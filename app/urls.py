@@ -17,6 +17,7 @@ urlpatterns = [
     path('RegistroRecepProducto/', RegistroRecepcionProducto, name="RegistroRecepProducto"),
     path('RegistroHuesped/', RegistroHuesped, name="RegistroHuesped"),
     
+    
 
 
 ]
